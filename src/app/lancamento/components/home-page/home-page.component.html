@@ -1,0 +1,57 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="mesAnterior()">
+      <mat-icon aria-label="Excluir">keyboard_arrow_left</mat-icon>
+    </button>
+    <div class="spacer"></div>
+    <span>{{ data$ | async | date: 'MM/yyyy' }}</span>
+    <div class="spacer"></div>
+    <button mat-icon-button (click)="proximoMes()">
+      <mat-icon aria-label="Excluir">keyboard_arrow_right</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-card>
+  <mat-card-content>
+    <span>Total: </span>{{ total | currency: 'BRL' }}
+  </mat-card-content>
+</mat-card>
+
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let lancamento of lancamentos$ | async">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ lancamento?.valor | currency: 'BRL' }}
+      </mat-panel-title>
+      
+      <mat-panel-description >
+        {{ lancamento?.categoria }}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-list>
+      <mat-list-item>
+        {{ lancamento?.titulo }}
+      </mat-list-item>
+      <mat-list-item>
+        {{ lancamento?.data.toDate() | date:'dd/MM/yyyy' }}
+      </mat-list-item>
+      <mat-list-item>
+        <div class="spacer"></div>
+        <button mat-icon-button (click)="openDialog(lancamento)">
+          <mat-icon aria-label="Excluir">delete</mat-icon>
+        </button>
+        <button mat-icon-button (click)="editar(lancamento)">
+          <mat-icon aria-label="Editar">edit</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<div class="bottom-limit"></div>
+
+<button class="add-novo-lancamento" mat-fab color="primary" (click)="adicionar()">
+  <mat-icon aria-label="Adicionar novo lançamento">add</mat-icon>
+</button>

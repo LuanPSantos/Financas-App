@@ -1,0 +1,10 @@
+.add-novo-lancamento{
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+}
+
+.bottom-limit {
+  height: 70px;
+  width: 100%;
+}

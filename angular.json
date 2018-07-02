@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "financas"
+  "defaultProject": "financas",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

@@ -1,0 +1,12 @@
+
+Configura o schematics
+
+ng config cli.defaultCollection @ngrx/schematics
+
+Gera o Store
+
+ng generate store AppState --root --module app.module.ts
+
+Gera o Effect do root
+
+ng generate effect App --root --module app.module.ts
