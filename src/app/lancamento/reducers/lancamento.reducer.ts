@@ -20,19 +20,21 @@ export function lancamentoReducer(state = initialState, action: LancamentoAction
     case LancamentoActionTypes.LancamentosCarregados: {
       return {
         ...state,
+        lancamentoASerEditado: null,
+        lancamentoASerExcluido: null,
         lancamentos: action.payload.lancamentos
       };
     }
     case LancamentoActionTypes.ExcluirLancamento: {
       return {
         ...state,
-        lancamentoASerExcluido: action.payload.lancamentoSelecionado
+        lancamentoASerExcluido: action.payload.lancamento
       };
     }
     case LancamentoActionTypes.EditarLancamento: {
       return {
         ...state,
-        lancamentoASerEditado: action.payload.lancamentoSelecionado
+        lancamentoASerEditado: action.payload.lancamento
       };
     }
     default: {

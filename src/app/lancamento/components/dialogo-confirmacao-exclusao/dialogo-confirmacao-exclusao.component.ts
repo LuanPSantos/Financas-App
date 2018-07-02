@@ -23,7 +23,7 @@ export class DialogoConfirmacaoExclusaoComponent implements OnInit {
   }
 
   sim(): void {
-    this.store.dispatch(new ExcluirLancamento({ lancamentoSelecionado: this.data.lancamento }));
+    this.store.dispatch(new ExcluirLancamento({ lancamento: this.data.lancamento }));
     this.dialogRef.close();
   }
 

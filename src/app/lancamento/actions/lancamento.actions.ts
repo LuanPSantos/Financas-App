@@ -7,7 +7,8 @@ export enum LancamentoActionTypes {
   LancamentosCarregados = '[Lancamentos API] Lançamentos Carregados',
   ExcluirLancamento = '[Popup exclusão de lanamento] Excluir Lançamento',
   EditarLancamento = '[Home Page] Editar Lançamento',
-  SalvarLancamento = '[Manutencao Page] Salvar Lançamento'
+  SalvarLancamento = '[Manutencao Page] Salvar Lançamento',
+  SalvarAlteracoesLancamento = '[Manutencao Page] Salvar Alteracoes Lancamento'
 }
 
 export class AddNovoLancamento implements Action {
@@ -27,17 +28,23 @@ export class LancamentosCarregados implements Action {
 export class ExcluirLancamento implements Action {
   readonly type = LancamentoActionTypes.ExcluirLancamento;
 
-  constructor(public payload: { lancamentoSelecionado: Lancamento }) { }
+  constructor(public payload: { lancamento: Lancamento }) { }
 }
 
 export class EditarLancamento implements Action {
   readonly type = LancamentoActionTypes.EditarLancamento;
 
-  constructor(public payload: { lancamentoSelecionado: Lancamento }) { }
+  constructor(public payload: { lancamento: Lancamento }) { }
 }
 
 export class SalvarLancamento implements Action {
   readonly type = LancamentoActionTypes.SalvarLancamento;
+
+  constructor(public payload: { lancamento: Lancamento }) { }
+}
+
+export class SalvarAlteracoesLancamento implements Action {
+  readonly type = LancamentoActionTypes.SalvarAlteracoesLancamento;
 
   constructor(public payload: { lancamento: Lancamento }) { }
 }
@@ -48,4 +55,5 @@ export type LancamentoActions =
   | LancamentosCarregados
   | ExcluirLancamento
   | EditarLancamento
-  | SalvarLancamento;
+  | SalvarLancamento
+  | SalvarAlteracoesLancamento;
