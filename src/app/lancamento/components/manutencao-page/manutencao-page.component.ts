@@ -4,9 +4,10 @@ import { of } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { AppState } from '../../../reducers';
 import { Store, select } from '@ngrx/store';
-import { SalvarLancamento, EditarLancamento, SalvarAlteracoesLancamento } from '../../actions/lancamento.actions';
-import { firestore } from 'firebase';
-import { selectLancamentoEdicao } from '../../selectors/lancamento.selectors';
+import { SalvarLancamento, SalvarAlteracoesLancamento } from '../../actions/lancamento.actions';
+
+import { selectLancamentoEdicao, selectDataConsulta } from '../../selectors/lancamento.selectors';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-manutencao-page',
@@ -40,10 +41,17 @@ export class ManutencaoPageComponent implements OnInit {
     this.store.pipe(
       select(selectLancamentoEdicao)
     ).subscribe((lancamento) => {
-      if(lancamento){
-        this.form.patchValue({ ...lancamento, data: lancamento.data.toDate() })
+      if (lancamento) {
+        this.form.patchValue({ ...lancamento, data: lancamento.data.toDate() });
       }
     });
+
+    this.store.pipe(
+      select(selectDataConsulta),
+      map((data) => {
+        this.form.get('data').setValue(data);
+      })
+    ).subscribe();
   }
 
   voltar() {
@@ -52,7 +60,7 @@ export class ManutencaoPageComponent implements OnInit {
 
   salvar() {
     if (this.form.get('id').value) {
-      this.store.dispatch(new SalvarAlteracoesLancamento({ lancamento: this.form.value }))
+      this.store.dispatch(new SalvarAlteracoesLancamento({ lancamento: this.form.value }));
     } else {
       this.store.dispatch(new SalvarLancamento({ lancamento: this.form.value }));
     }

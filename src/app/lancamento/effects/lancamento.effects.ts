@@ -1,9 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { LancamentoActionTypes, CarregarLancamentos, LancamentosCarregados, SalvarLancamento, ExcluirLancamento, SalvarAlteracoesLancamento } from '../actions/lancamento.actions';
+import {
+  LancamentoActionTypes,
+  CarregarLancamentos,
+  LancamentosCarregados,
+  SalvarLancamento,
+  ExcluirLancamento,
+  SalvarAlteracoesLancamento,
+  AtualizarData
+} from '../actions/lancamento.actions';
 import { map, mergeMap, tap } from 'rxjs/operators';
 import { LancamentoService } from '../lancamento.service';
 import { Router } from '@angular/router';
+import { AppState } from '../../reducers';
+import { Store, select } from '@ngrx/store';
+import { selectDataConsulta } from '../selectors/lancamento.selectors';
 
 @Injectable()
 export class LancamentoEffects {
@@ -12,24 +23,31 @@ export class LancamentoEffects {
   carregarLancamentos$ = this.actions$
     .pipe(
       ofType<CarregarLancamentos>(LancamentoActionTypes.CarregarLancamentos),
-      mergeMap(() => this.lancamentoService.buscarTodos()),
-      map((lancamentos) => new LancamentosCarregados({ lancamentos }))
+      mergeMap((action) => this.lancamentoService.buscarTodos(action.payload.data)),
+      map((lancamentos) => {
+        return new LancamentosCarregados({ lancamentos });
+      })
     );
 
   @Effect({ dispatch: false })
   salvarLancamento$ = this.actions$
     .pipe(
       ofType<SalvarLancamento>(LancamentoActionTypes.SalvarLancamento),
-      mergeMap((lancamento) => this.lancamentoService.salvar(lancamento.payload.lancamento)),
-      tap(() => this.router.navigateByUrl('home'))// TODO Configurar router-store
+      tap((lancamento) => this.lancamentoService.salvar(lancamento.payload.lancamento)),
+      tap(() => this.router.navigateByUrl('home'))
     );
 
-  @Effect()
+  @Effect({ dispatch: false })
   excluirLancamento$ = this.actions$
     .pipe(
       ofType<ExcluirLancamento>(LancamentoActionTypes.ExcluirLancamento),
-      tap((lancamento) => this.lancamentoService.excluir(lancamento.payload.lancamento)),
-      map(() => new CarregarLancamentos())
+      map((action) => this.lancamentoService.excluir(action.payload.lancamento)),
+      tap(() => {
+        this.store.pipe(
+          select(selectDataConsulta),
+          map((data) => new CarregarLancamentos({ data }))
+        );
+      })
     );
 
   @Effect({ dispatch: false })
@@ -39,5 +57,16 @@ export class LancamentoEffects {
       tap((lancamento) => this.lancamentoService.atualizar(lancamento.payload.lancamento))
     );
 
-  constructor(private actions$: Actions, private lancamentoService: LancamentoService, private router: Router) { }
+  @Effect()
+  atualizarData$ = this.actions$
+    .pipe(
+      ofType<AtualizarData>(LancamentoActionTypes.AtualizarData),
+      map((action) => new CarregarLancamentos({ data: action.payload.data }))
+    );
+
+  constructor(
+    private actions$: Actions,
+    private lancamentoService: LancamentoService,
+    private router: Router,
+    private store: Store<AppState>) { }
 }

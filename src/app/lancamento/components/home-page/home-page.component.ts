@@ -3,11 +3,12 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Lancamento } from '../../../shared/models/lancamento.model';
 import { LancamentoState } from '../../reducers/lancamento.reducer';
-import { CarregarLancamentos, ExcluirLancamento, EditarLancamento } from '../../actions/lancamento.actions';
+import { CarregarLancamentos, EditarLancamento, AtualizarData } from '../../actions/lancamento.actions';
 import { selectLancamentos, selectDataConsulta } from '../../selectors/lancamento.selectors';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogoConfirmacaoExclusaoComponent } from '../dialogo-confirmacao-exclusao/dialogo-confirmacao-exclusao.component';
 import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home-page',
@@ -17,8 +18,8 @@ import { Router } from '@angular/router';
 export class HomePageComponent implements OnInit {
 
   lancamentos$: Observable<Lancamento[]>;
-  data$: Observable<Date>;
-  total = 1234.28;
+  data: Date;
+  total = 0;
 
   constructor(
     private router: Router,
@@ -34,19 +35,25 @@ export class HomePageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.dispatch(new CarregarLancamentos());
-
     this.lancamentos$ = this.store.pipe(
       select(selectLancamentos)
     );
 
-    this.data$ = this.store.pipe(
-      select(selectDataConsulta)
-    );
+    this.store.pipe(
+      select(selectDataConsulta),
+      map((data) => {
+        this.store.dispatch(new CarregarLancamentos({ data }));
+        this.data = new Date(data.getTime());
+      })
+    ).subscribe();
 
-    // this.lancamentos$.subscribe((lancamentos) => {
-    //   this.total = lancamentos.map(c => c.valor).reduce((sum, current) => sum + current);
-    // });
+    this.lancamentos$.subscribe((lancamentos) => {
+      if (lancamentos.length > 0) {
+        this.total = lancamentos.map(c => c.valor).reduce((sum, current) => sum + current);
+      } else {
+        this.total = 0;
+      }
+    });
   }
 
   editar(lancamento: Lancamento) {
@@ -59,11 +66,16 @@ export class HomePageComponent implements OnInit {
   }
 
   mesAnterior() {
-    console.log('Mes atenrior');
+    this.data.setDate(1);
+    this.data.setMonth(this.data.getMonth() - 1);
+
+    this.store.dispatch(new AtualizarData({ data: this.data }));
   }
 
   proximoMes() {
-    console.log('Proximo Mes');
-  }
+    this.data.setDate(1);
+    this.data.setMonth(this.data.getMonth() + 1);
 
+    this.store.dispatch(new AtualizarData({ data: this.data }));
+  }
 }

@@ -14,7 +14,7 @@ export class DialogoConfirmacaoExclusaoComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<DialogoConfirmacaoExclusaoComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { lancamento: Lancamento},
+    @Inject(MAT_DIALOG_DATA) public data: { lancamento: Lancamento },
     private store: Store<LancamentoState>
   ) { }
 

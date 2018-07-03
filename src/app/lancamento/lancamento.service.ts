@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Lancamento } from '../shared/models/lancamento.model';
 import { AngularFirestore } from 'angularfire2/firestore';
-import {  } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 
 @Injectable()
@@ -13,29 +13,35 @@ export class LancamentoService {
 
   }
 
-  salvar(lancamento: Lancamento): Observable<void> {
+  salvar(lancamento: Lancamento) {
     this.db.collection('lancamentos').add(lancamento);
-    return of();
   }
 
-  buscarTodos(): Observable<Lancamento[]> {
-    return this.db.collection<Lancamento>('lancamentos').snapshotChanges().pipe(
-      map((actions) => {
-        return actions.map((a) => {
-          let id = a.payload.doc.id;
-          let data = a.payload.doc.data();
+  buscarTodos(currentDate: Date): Observable<Lancamento[]> {
+    const date = currentDate;
+    const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+    const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
 
-          return {id : id, ...data};
-        });
-      })
-    );
+    return this.db.collection<Lancamento>('lancamentos',
+      ref => ref
+        .where('data', '>=', firstDay)
+        .where('data', '<=', lastDay)
+
+    ).snapshotChanges().pipe(
+      map((actions) => actions.map((a): Lancamento => {
+        const id = a.payload.doc.id;
+        const data = a.payload.doc.data();
+
+        const lancamento: Lancamento = { ...data, id: id };
+        return lancamento;
+      })));
   }
 
-  excluir(lancamento: Lancamento){
-    this.db.doc('lancamentos/' + lancamento.id).delete();
+  excluir(lancamento: Lancamento) {
+    this.db.doc<Lancamento>('lancamentos/' + lancamento.id).delete();
   }
 
-  atualizar(lancamento: Lancamento){
-    this.db.doc('lancamentos/' + lancamento.id).update(lancamento);
+  atualizar(lancamento: Lancamento) {
+    this.db.doc<Lancamento>('lancamentos/' + lancamento.id).update(lancamento);
   }
 }
