@@ -5,27 +5,24 @@
     </button>
   </mat-toolbar-row>
 </mat-toolbar>
-
-
-
 <mat-card>
   <mat-card-content>
     <form [formGroup]="form">
       <mat-form-field class="full-width">
-        <input matInput type="number" placeholder="Valor" formControlName="valor">
+        <input matInput type="number" placeholder="Valor (Ex: 8,43)" formControlName="valor">
       </mat-form-field>
       <mat-form-field class="full-width">
-        <input matInput placeholder="Descrição" formControlName="titulo">
+        <input matInput placeholder="Descrição  (Ex: Maçãs)" formControlName="titulo">
       </mat-form-field>
       <mat-form-field class="full-width">
-        <mat-select placeholder="Categoria" formControlName="categoria">
+        <mat-select placeholder="Categoria (Ex: Comida)" formControlName="categoria">
           <mat-option *ngFor="let categoria of categorias$ | async" [value]="categoria.value">
             {{categoria.label}}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field class="full-width">
-        <input matInput [matDatepicker]="picker" placeholder="Que dia foi o gasto?" formControlName="data">
+        <input matInput [matDatepicker]="picker" placeholder="Que dia foi o gasto? (Ex: 12/21/2018)" formControlName="data">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>

@@ -18,6 +18,7 @@ export function lancamentoReducer(state = initialState, action: LancamentoAction
     case LancamentoActionTypes.LancamentosCarregados: {
       return {
         ...state,
+        lancamentoASerEditado: null,
         lancamentos: action.payload.lancamentos
       };
     }

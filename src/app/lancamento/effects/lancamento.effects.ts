@@ -6,7 +6,7 @@ import {
   LancamentosCarregados,
   SalvarLancamento,
   ExcluirLancamento,
-  SalvarAlteracoesLancamento,
+  AtualizarLancamento,
   AtualizarData
 } from '../actions/lancamento.actions';
 import { map, mergeMap, tap } from 'rxjs/operators';
@@ -51,9 +51,9 @@ export class LancamentoEffects {
     );
 
   @Effect({ dispatch: false })
-  salvarAlteracoesLancamento$ = this.actions$
+  atualizarLancamento$ = this.actions$
     .pipe(
-      ofType<SalvarAlteracoesLancamento>(LancamentoActionTypes.SalvarAlteracoesLancamento),
+      ofType<AtualizarLancamento>(LancamentoActionTypes.AtualizarLancamento),
       tap((lancamento) => this.lancamentoService.atualizar(lancamento.payload.lancamento))
     );
 

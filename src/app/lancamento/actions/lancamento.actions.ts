@@ -2,14 +2,14 @@ import { Action } from '@ngrx/store';
 import { Lancamento } from '../../shared/models/lancamento.model';
 
 export enum LancamentoActionTypes {
-  AddNovoLancamento = '[Home Page] Add Novo Lançamento',
-  CarregarLancamentos = '[Home Page] Carregar Lançamentos',
+  AddNovoLancamento = '[Página home] Add Novo Lançamento',
+  CarregarLancamentos = '[Página home] Carregar Lançamentos',
   LancamentosCarregados = '[Lancamentos API] Lançamentos Carregados',
-  ExcluirLancamento = '[Popup exclusão de lanamento] Excluir Lançamento',
-  EditarLancamento = '[Home Page] Editar Lançamento',
-  SalvarLancamento = '[Manutencao Page] Salvar Lançamento',
-  SalvarAlteracoesLancamento = '[Manutencao Page] Salvar Alteracoes Lancamento',
-  AtualizarData = '[Home Page] Atualizar Data'
+  ExcluirLancamento = '[Popup de exclusão de lanamento] Excluir Lançamento',
+  EditarLancamento = '[Página Home] Editar Lançamento',
+  SalvarLancamento = '[Página de manutenção] Salvar Lançamento',
+  AtualizarLancamento = '[Página de manutenção de lançamentos] Atualizar Lancamento',
+  AtualizarData = '[Página Home] Atualizar Data'
 }
 
 export class AddNovoLancamento implements Action {
@@ -46,8 +46,8 @@ export class SalvarLancamento implements Action {
   constructor(public payload: { lancamento: Lancamento }) { }
 }
 
-export class SalvarAlteracoesLancamento implements Action {
-  readonly type = LancamentoActionTypes.SalvarAlteracoesLancamento;
+export class AtualizarLancamento implements Action {
+  readonly type = LancamentoActionTypes.AtualizarLancamento;
 
   constructor(public payload: { lancamento: Lancamento }) { }
 }
@@ -65,5 +65,5 @@ export type LancamentoActions =
   | ExcluirLancamento
   | EditarLancamento
   | SalvarLancamento
-  | SalvarAlteracoesLancamento
+  | AtualizarLancamento
   | AtualizarData;

@@ -19,7 +19,6 @@ export class HomePageComponent implements OnInit {
 
   lancamentos$: Observable<Lancamento[]>;
   data: Date;
-  total = 0;
 
   constructor(
     private router: Router,
@@ -46,14 +45,6 @@ export class HomePageComponent implements OnInit {
         this.data = new Date(data.getTime());
       })
     ).subscribe();
-
-    this.lancamentos$.subscribe((lancamentos) => {
-      if (lancamentos.length > 0) {
-        this.total = lancamentos.map(c => c.valor).reduce((sum, current) => sum + current);
-      } else {
-        this.total = 0;
-      }
-    });
   }
 
   editar(lancamento: Lancamento) {

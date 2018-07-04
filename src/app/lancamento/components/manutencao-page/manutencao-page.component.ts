@@ -4,7 +4,7 @@ import { of } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { AppState } from '../../../reducers';
 import { Store, select } from '@ngrx/store';
-import { SalvarLancamento, SalvarAlteracoesLancamento } from '../../actions/lancamento.actions';
+import { SalvarLancamento, AtualizarLancamento } from '../../actions/lancamento.actions';
 
 import { selectLancamentoEdicao, selectDataConsulta } from '../../selectors/lancamento.selectors';
 import { map } from 'rxjs/operators';
@@ -19,8 +19,14 @@ export class ManutencaoPageComponent implements OnInit {
   categorias$ = of([
     { label: 'Carro', value: 'Carro' },
     { label: 'Comida', value: 'Comida' },
-    { label: 'Educação', value: 'Educação' }
+    { label: 'Educação', value: 'Educação' },
+    { label: 'Lazer', value: 'Lazer' },
+    { label: 'Casa', value: 'Casa' },
+    { label: 'Cartão de crédio', value: 'Cartão de crédito' },
+    { label: 'Imprevistos', value: 'Imprevistos' },
+    { label: 'Outros', value: 'Outros' }
   ]);
+
   form: FormGroup;
 
   constructor(
@@ -60,7 +66,7 @@ export class ManutencaoPageComponent implements OnInit {
 
   salvar() {
     if (this.form.get('id').value) {
-      this.store.dispatch(new SalvarAlteracoesLancamento({ lancamento: this.form.value }));
+      this.store.dispatch(new AtualizarLancamento({ lancamento: this.form.value }));
     } else {
       this.store.dispatch(new SalvarLancamento({ lancamento: this.form.value }));
     }
