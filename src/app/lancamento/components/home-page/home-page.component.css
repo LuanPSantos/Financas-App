@@ -22,9 +22,9 @@
 }
 
 .cor-pago{
-  background-color: #e91e63;
+  background-color:rgba(0, 0, 0, 0.38);
 }
 
 .cor-nao-pago{
-  background-color:rgba(0, 0, 0, 0.38);
+  background-color: #e91e63;
 }
