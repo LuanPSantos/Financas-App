@@ -33,7 +33,7 @@ export class LancamentoEffects {
   salvarLancamento$ = this.actions$
     .pipe(
       ofType<SalvarLancamento>(LancamentoActionTypes.SalvarLancamento),
-      tap((lancamento) => this.lancamentoService.salvar(lancamento.payload.lancamento)),
+      tap((action) => this.lancamentoService.salvar(action.payload.lancamento)),
       tap(() => this.router.navigateByUrl('home'))
     );
 
@@ -54,7 +54,7 @@ export class LancamentoEffects {
   atualizarLancamento$ = this.actions$
     .pipe(
       ofType<AtualizarLancamento>(LancamentoActionTypes.AtualizarLancamento),
-      tap((lancamento) => this.lancamentoService.atualizar(lancamento.payload.lancamento))
+      tap((action) => this.lancamentoService.atualizar(action.payload.lancamento))
     );
 
   @Effect()

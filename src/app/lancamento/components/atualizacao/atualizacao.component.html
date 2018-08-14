@@ -26,6 +26,11 @@
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
+      <div class="full-width pago-conteiner">
+        <mat-slide-toggle formControlName="pago">
+          Pago
+        </mat-slide-toggle>
+      </div>
     </form>
     <button mat-raised-button (click)="salvar()">Salvar</button>
   </mat-card-content>

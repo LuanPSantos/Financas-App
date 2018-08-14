@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ManutencaoPageComponent } from './manutencao-page.component';
+import { AtualizacaoComponent } from './atualizacao.component';
 
-describe('ManutencaoPageComponent', () => {
-  let component: ManutencaoPageComponent;
-  let fixture: ComponentFixture<ManutencaoPageComponent>;
+describe('AtualizacaoComponent', () => {
+  let component: AtualizacaoComponent;
+  let fixture: ComponentFixture<AtualizacaoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ManutencaoPageComponent ]
+      declarations: [ AtualizacaoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ManutencaoPageComponent);
+    fixture = TestBed.createComponent(AtualizacaoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -10,7 +10,7 @@ export interface LancamentoState {
 export const initialState: LancamentoState = {
   data: new Date(),
   lancamentos: [],
-  lancamentoASerEditado: null
+  lancamentoASerEditado: null,
 };
 
 export function lancamentoReducer(state = initialState, action: LancamentoActions): LancamentoState {

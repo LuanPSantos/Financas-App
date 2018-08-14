@@ -49,11 +49,11 @@ export class HomePageComponent implements OnInit {
 
   editar(lancamento: Lancamento) {
     this.store.dispatch(new EditarLancamento({ lancamento: lancamento }));
-    this.router.navigateByUrl('manutencao');
+    this.router.navigateByUrl('edicao');
   }
 
   adicionar() {
-    this.router.navigateByUrl('manutencao');
+    this.router.navigateByUrl('cadastro');
   }
 
   mesAnterior() {

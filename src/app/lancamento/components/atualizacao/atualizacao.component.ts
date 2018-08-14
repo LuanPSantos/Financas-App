@@ -10,11 +10,11 @@ import { selectLancamentoEdicao, selectDataConsulta } from '../../selectors/lanc
 import { map } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-manutencao-page',
-  templateUrl: './manutencao-page.component.html',
-  styleUrls: ['./manutencao-page.component.css']
+  selector: 'app-atualizacao',
+  templateUrl: './atualizacao.component.html',
+  styleUrls: ['./atualizacao.component.css']
 })
-export class ManutencaoPageComponent implements OnInit {
+export class AtualizacaoComponent implements OnInit {
 
   categorias$ = of([
     { label: 'Carro', value: 'Carro' },
@@ -39,7 +39,8 @@ export class ManutencaoPageComponent implements OnInit {
       valor: new FormControl(''),
       titulo: new FormControl(''),
       data: new FormControl(new Date()),
-      categoria: new FormControl()
+      categoria: new FormControl(),
+      pago: new FormControl(false)
     });
   }
 
@@ -65,10 +66,7 @@ export class ManutencaoPageComponent implements OnInit {
   }
 
   salvar() {
-    if (this.form.get('id').value) {
       this.store.dispatch(new AtualizarLancamento({ lancamento: this.form.value }));
-    } else {
-      this.store.dispatch(new SalvarLancamento({ lancamento: this.form.value }));
-    }
   }
+
 }

@@ -14,7 +14,6 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { DashboardPageComponent } from './components/dashboard-page/dashboard-page.component';
 import { DialogoConfirmacaoExclusaoComponent } from './components/dialogo-confirmacao-exclusao/dialogo-confirmacao-exclusao.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ManutencaoPageComponent } from './components/manutencao-page/manutencao-page.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -22,6 +21,9 @@ import { MatNativeDateModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { LancamentoService } from './lancamento.service';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { CadastroComponent } from './components/cadastro/cadastro.component';
+import { AtualizacaoComponent } from './components/atualizacao/atualizacao.component';
 
 @NgModule({
   imports: [
@@ -41,13 +43,15 @@ import { LancamentoService } from './lancamento.service';
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    MatSlideToggleModule
   ],
   declarations: [
     DashboardPageComponent,
     HomePageComponent,
     DialogoConfirmacaoExclusaoComponent,
-    ManutencaoPageComponent
+    CadastroComponent,
+    AtualizacaoComponent
   ],
   entryComponents: [
     DialogoConfirmacaoExclusaoComponent

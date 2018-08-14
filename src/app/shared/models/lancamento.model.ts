@@ -6,4 +6,7 @@ export class Lancamento {
   data: firestore.Timestamp;
   valor: number;
   categoria: string;
+  pago: boolean;
+  parcela: number;
+  parcelas: number;
 }

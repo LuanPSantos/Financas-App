@@ -1,0 +1,43 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button mat-icon-button (click)="voltar()">
+        <mat-icon aria-label="Voltar">keyboard_arrow_left</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="form">
+        <mat-form-field class="full-width">
+          <input matInput type="number" placeholder="Valor (Ex: 8,43)" formControlName="valor">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Descrição  (Ex: Maçãs)" formControlName="titulo">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-select placeholder="Categoria (Ex: Comida)" formControlName="categoria">
+            <mat-option *ngFor="let categoria of categorias$ | async" [value]="categoria.value">
+              {{categoria.label}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput [matDatepicker]="picker" placeholder="Que dia foi o gasto? (Ex: 12/21/2018)" formControlName="data">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <div class="full-width pago-conteiner">
+          <mat-slide-toggle formControlName="pago">
+            Pago
+          </mat-slide-toggle>
+        </div>
+      </form>
+      <form [formGroup]="formParcelas">
+        <mat-form-field class="full-width">
+          <input matInput type="number" placeholder="Parcelas (ex: 10)" formControlName="parcelas">
+        </mat-form-field>
+      </form>
+      <div class="espaco"></div>
+      <button mat-raised-button (click)="salvar()" [disabled]="!form.valid || !formParcelas.valid" color="primary">Salvar</button>
+    </mat-card-content>
+  </mat-card>

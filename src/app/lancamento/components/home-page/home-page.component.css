@@ -13,3 +13,18 @@
   width: 100%;
   text-align: right;
 }
+
+.bolinha{
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin-right: 16px;
+}
+
+.cor-pago{
+  background-color:rgba(0, 0, 0, 0.38);
+}
+
+.cor-nao-pago{
+  background-color: #e91e63;
+}
