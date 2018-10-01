@@ -24,6 +24,7 @@ import { LancamentoService } from './lancamento.service';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
 import { AtualizacaoComponent } from './components/atualizacao/atualizacao.component';
+import { LancamentoRoutingModule } from './lancamento-routing.module';
 
 @NgModule({
   imports: [
@@ -44,7 +45,8 @@ import { AtualizacaoComponent } from './components/atualizacao/atualizacao.compo
     MatNativeDateModule,
     ReactiveFormsModule,
     AngularFirestoreModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    LancamentoRoutingModule
   ],
   declarations: [
     DashboardPageComponent,

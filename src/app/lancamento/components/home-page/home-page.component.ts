@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Lancamento } from '../../../shared/models/lancamento.model';
+import { Lancamento } from '../../model/lancamento.model';
 import { LancamentoState } from '../../reducers/lancamento.reducer';
 import { CarregarLancamentos, EditarLancamento, AtualizarData } from '../../actions/lancamento.actions';
 import { selectLancamentos, selectDataConsulta } from '../../selectors/lancamento.selectors';
@@ -49,11 +49,11 @@ export class HomePageComponent implements OnInit {
 
   editar(lancamento: Lancamento) {
     this.store.dispatch(new EditarLancamento({ lancamento: lancamento }));
-    this.router.navigateByUrl('edicao');
+    this.router.navigateByUrl('app/edicao');
   }
 
   adicionar() {
-    this.router.navigateByUrl('cadastro');
+    this.router.navigateByUrl('app/cadastro');
   }
 
   mesAnterior() {

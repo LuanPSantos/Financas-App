@@ -8,7 +8,6 @@ import { reducers, metaReducers } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LancamentoModule } from './lancamento/lancamento.module';
 import { EffectsModule } from '@ngrx/effects';
 import { AngularFireModule } from 'angularfire2';
 
@@ -17,10 +16,10 @@ import { AngularFireModule } from 'angularfire2';
     AppComponent
   ],
   imports: [
-    LancamentoModule,
+    AppRoutingModule
+
     BrowserAnimationsModule,
     BrowserModule,
-    AppRoutingModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([]),

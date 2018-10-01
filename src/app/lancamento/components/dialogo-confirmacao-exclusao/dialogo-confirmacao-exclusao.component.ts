@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Lancamento } from '../../../shared/models/lancamento.model';
 import { Store } from '@ngrx/store';
 import { LancamentoState } from '../../reducers/lancamento.reducer';
 import { ExcluirLancamento } from '../../actions/lancamento.actions';
+import { Lancamento } from '../../model/lancamento.model';
 
 @Component({
   selector: 'app-dialogo-confirmacao-exclusao',

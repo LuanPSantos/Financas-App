@@ -1,5 +1,5 @@
 import { LancamentoActionTypes, LancamentoActions } from '../actions/lancamento.actions';
-import { Lancamento } from '../../shared/models/lancamento.model';
+import { Lancamento } from '../model/lancamento.model';
 
 export interface LancamentoState {
   data: Date;

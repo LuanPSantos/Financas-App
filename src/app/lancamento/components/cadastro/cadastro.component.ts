@@ -6,9 +6,8 @@ import { AppState } from '../../../reducers';
 import { Store, select } from '@ngrx/store';
 import { SalvarLancamento, AtualizarLancamento } from '../../actions/lancamento.actions';
 
-import { selectLancamentoEdicao, selectDataConsulta } from '../../selectors/lancamento.selectors';
+import { selectDataConsulta } from '../../selectors/lancamento.selectors';
 import { map } from 'rxjs/operators';
-import { Lancamento } from '../../../shared/models/lancamento.model';
 
 @Component({
   selector: 'app-cadastro',
@@ -63,7 +62,7 @@ export class CadastroComponent implements OnInit {
   }
 
   voltar() {
-    this.router.navigateByUrl('home');
+    this.router.navigateByUrl('app/home');
   }
 
   salvar() {

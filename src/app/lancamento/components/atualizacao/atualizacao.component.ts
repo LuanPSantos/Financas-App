@@ -62,7 +62,7 @@ export class AtualizacaoComponent implements OnInit {
   }
 
   voltar() {
-    this.router.navigateByUrl('home');
+    this.router.navigateByUrl('app/home');
   }
 
   salvar() {

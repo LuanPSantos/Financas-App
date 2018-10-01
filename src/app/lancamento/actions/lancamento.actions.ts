@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Lancamento } from '../../shared/models/lancamento.model';
+import { Lancamento } from '../model/lancamento.model';
 
 export enum LancamentoActionTypes {
   AddNovoLancamento = '[Página home] Add Novo Lançamento',

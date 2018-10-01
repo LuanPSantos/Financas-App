@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { Lancamento } from '../shared/models/lancamento.model';
+import { Observable } from 'rxjs';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Lancamento } from './model/lancamento.model';
 
 
 @Injectable()
