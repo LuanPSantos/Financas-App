@@ -13,6 +13,8 @@ import { Observable, of } from 'rxjs';
 export class DashboardPageComponent implements OnInit {
 
   total$: Observable<number> = of(0);
+  pago$: Observable<number> = of(0);
+  restante$: Observable<number> = of(0);
 
   constructor(private store: Store<LancamentoState>) { }
 
@@ -22,6 +24,30 @@ export class DashboardPageComponent implements OnInit {
       map((lancamentos) => {
         if (lancamentos.length > 0) {
           return lancamentos.map(c => c.valor).reduce((sum, current) => sum + current);
+        } else {
+          return 0;
+        }
+      })
+    );
+
+    this.pago$ = this.store.pipe(
+      select(selectLancamentos),
+      map((lancamentos) => {
+        const filtered = lancamentos.filter(l => l.pago);
+        if (lancamentos.length > 0 && filtered.length > 0) {
+          return filtered.map(c => c.valor).reduce((sum, current) => sum + current);
+        } else {
+          return 0;
+        }
+      })
+    );
+
+    this.restante$ = this.store.pipe(
+      select(selectLancamentos),
+      map((lancamentos) => {
+        const filtered = lancamentos.filter(l => !l.pago);
+        if (lancamentos.length > 0 && filtered.length > 0) {
+          return filtered.map(c => c.valor).reduce((sum, current) => sum + current);
         } else {
           return 0;
         }
