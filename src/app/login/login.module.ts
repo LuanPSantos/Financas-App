@@ -5,15 +5,17 @@ import { LoginRoutingModule } from './login-routing.module';
 import { AuthService } from './auth.service';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    LoginRoutingModule,
-    AngularFireAuthModule,
-    AngularFirestoreModule
-  ],
-  declarations: [LoginComponent],
-  providers: [AuthService]
+    imports: [
+        CommonModule,
+        LoginRoutingModule,
+        AngularFireAuthModule,
+        AngularFirestoreModule,
+        MatButtonModule
+    ],
+    declarations: [LoginComponent],
+    providers: [AuthService]
 })
 export class LoginModule { }

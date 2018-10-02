@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogoConfirmacaoExclusaoComponent } from '../dialogo-confirmacao-exclusao/dialogo-confirmacao-exclusao.component';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { AuthService } from '../../../login/auth.service';
 
 @Component({
   selector: 'app-home-page',
@@ -23,7 +24,8 @@ export class HomePageComponent implements OnInit {
   constructor(
     private router: Router,
     private store: Store<LancamentoState>,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    public auth: AuthService) { }
 
   openDialog(lancamento: Lancamento): void {
     this.dialog.open(DialogoConfirmacaoExclusaoComponent, {
@@ -68,5 +70,9 @@ export class HomePageComponent implements OnInit {
     this.data.setMonth(this.data.getMonth() + 1);
 
     this.store.dispatch(new AtualizarData({ data: this.data }));
+  }
+
+  onLogout() {
+    this.auth.signOut();
   }
 }

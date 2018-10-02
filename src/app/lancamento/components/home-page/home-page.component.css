@@ -5,7 +5,8 @@
 }
 
 .bottom-limit {
-  height: 70px;
+  padding-top: 18px;
+  height: 42px;
   width: 100%;
 }
 

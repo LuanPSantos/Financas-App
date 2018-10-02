@@ -55,7 +55,9 @@
   </mat-expansion-panel>
 </mat-accordion>
 
-<div class="bottom-limit"></div>
+<div class="bottom-limit">
+    <button mat-raised-button color="primary" (click)="onLogout()">Sair</button>
+</div>
 
 <button class="add-novo-lancamento" mat-fab color="primary" (click)="adicionar()">
   <mat-icon aria-label="Adicionar novo lançamento">add</mat-icon>
