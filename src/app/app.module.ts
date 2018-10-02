@@ -10,13 +10,17 @@ import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
 import { AngularFireModule } from 'angularfire2';
+import { AuthGuard } from './login/auth.guard';
+import { LoginModule } from './login/login.module';
+import { AuthService } from './login/auth.service';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    AppRoutingModule
+    AppRoutingModule,
+    LoginModule,
 
     BrowserAnimationsModule,
     BrowserModule,
@@ -25,7 +29,7 @@ import { AngularFireModule } from 'angularfire2';
     EffectsModule.forRoot([]),
     AngularFireModule.initializeApp(environment.firebase)
   ],
-  providers: [],
+  providers: [AuthGuard, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
