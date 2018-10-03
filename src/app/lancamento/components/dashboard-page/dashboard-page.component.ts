@@ -15,6 +15,10 @@ export class DashboardPageComponent implements OnInit {
   total$: Observable<number> = of(0);
   pago$: Observable<number> = of(0);
   restante$: Observable<number> = of(0);
+  // // Pie
+  // public pieChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales'];
+  // public pieChartData: number[] = [300, 500, 100];
+  // public pieChartType = 'pie';
 
   constructor(private store: Store<LancamentoState>) { }
 
@@ -54,5 +58,4 @@ export class DashboardPageComponent implements OnInit {
       })
     );
   }
-
 }

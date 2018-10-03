@@ -25,6 +25,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
 import { AtualizacaoComponent } from './components/atualizacao/atualizacao.component';
 import { LancamentoRoutingModule } from './lancamento-routing.module';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   imports: [
@@ -46,7 +47,8 @@ import { LancamentoRoutingModule } from './lancamento-routing.module';
     ReactiveFormsModule,
     AngularFirestoreModule,
     MatSlideToggleModule,
-    LancamentoRoutingModule
+    LancamentoRoutingModule,
+    ChartsModule
   ],
   declarations: [
     DashboardPageComponent,

@@ -1,0 +1,18 @@
+.total{
+  background-color: #ccc;
+}
+
+.pago{
+  background-color: #6fbf73;
+}
+
+.restante{
+  background-color: #ff4569;
+}
+
+.indicador{
+  display: inline-block;
+  padding: 16px;
+  margin: 4px;
+  border-radius: 4px;
+}

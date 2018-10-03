@@ -1,9 +1,17 @@
 <mat-card>
   <mat-card-content>
-    <span>Total: </span>{{ total$ | async | currency: 'BRL' }}
-    <br><br>
-    <span>Pago: </span>{{ pago$ | async | currency: 'BRL' }}
-    <br><br>
-    <span>Restante: </span>{{ restante$ | async | currency: 'BRL' }}
+    <p class="total indicador">Total: {{ total$ | async | currency: 'BRL' }}</p>
+
+    <p class="pago indicador">Pago: {{ pago$ | async | currency: 'BRL' }}</p>
+
+    <p class="restante indicador">Restante: {{ restante$ | async | currency: 'BRL' }}</p>
   </mat-card-content>
 </mat-card>
+<!-- <mat-card>
+  <mat-card-content>
+      <canvas baseChart 
+            [data]="pieChartData"
+            [labels]="pieChartLabels"
+            [chartType]="pieChartType"></canvas>
+  </mat-card-content>
+</mat-card> -->
