@@ -33,8 +33,7 @@ export class LancamentoEffects {
   salvarLancamento$ = this.actions$
     .pipe(
       ofType<SalvarLancamento>(LancamentoActionTypes.SalvarLancamento),
-      tap((action) => this.lancamentoService.salvar(action.payload.lancamento)),
-      tap(() => this.router.navigateByUrl('app/home'))
+      tap((action) => this.lancamentoService.salvar(action.payload.lancamento))
     );
 
   @Effect({ dispatch: false })

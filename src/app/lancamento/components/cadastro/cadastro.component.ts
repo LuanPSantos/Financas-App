@@ -16,7 +16,6 @@ import { map } from 'rxjs/operators';
 })
 export class CadastroComponent implements OnInit {
 
-
   categorias$ = of([
     { label: 'Carro', value: 'Carro' },
     { label: 'Comida', value: 'Comida' },
@@ -25,6 +24,7 @@ export class CadastroComponent implements OnInit {
     { label: 'Casa', value: 'Casa' },
     { label: 'Cartão de crédio', value: 'Cartão de crédito' },
     { label: 'Imprevistos', value: 'Imprevistos' },
+    { label: 'Saúde', value: 'Saúde' },
     { label: 'Outros', value: 'Outros' }
   ]);
 
@@ -66,6 +66,13 @@ export class CadastroComponent implements OnInit {
   }
 
   salvar() {
+    this.dispatchEvents();
+    this.form.reset();
+    this.formParcelas.reset();
+    this.router.navigateByUrl('app/home');
+  }
+
+  dispatchEvents() {
     const parcelas = this.formParcelas.get('parcelas').value;
     for (let i = 1; i <= this.formParcelas.get('parcelas').value; i++) {
       const data: Date = this.form.get('data').value;

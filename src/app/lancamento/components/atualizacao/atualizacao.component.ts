@@ -4,7 +4,7 @@ import { of } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { AppState } from '../../../reducers';
 import { Store, select } from '@ngrx/store';
-import { SalvarLancamento, AtualizarLancamento } from '../../actions/lancamento.actions';
+import { AtualizarLancamento } from '../../actions/lancamento.actions';
 
 import { selectLancamentoEdicao, selectDataConsulta } from '../../selectors/lancamento.selectors';
 import { map } from 'rxjs/operators';
@@ -24,6 +24,7 @@ export class AtualizacaoComponent implements OnInit {
     { label: 'Casa', value: 'Casa' },
     { label: 'Cartão de crédio', value: 'Cartão de crédito' },
     { label: 'Imprevistos', value: 'Imprevistos' },
+    { label: 'Saúde', value: 'Saúde' },
     { label: 'Outros', value: 'Outros' }
   ]);
 

@@ -4,17 +4,18 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Lancamento } from './model/lancamento.model';
+import { AuthService } from '../login/auth.service';
 
 
 @Injectable()
 export class LancamentoService {
 
-  constructor(private db: AngularFirestore) {
+  constructor(private db: AngularFirestore, private authService: AuthService) {
 
   }
 
   salvar(lancamento: Lancamento) {
-    this.db.collection('lancamentos').add(lancamento);
+    this.db.collection(`users/${this.authService.user.uid}/lancamentos`).add(lancamento);
   }
 
   buscarTodos(currentDate: Date): Observable<Lancamento[]> {
@@ -22,7 +23,7 @@ export class LancamentoService {
     const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
     const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
 
-    return this.db.collection<Lancamento>('lancamentos',
+    return this.db.collection<Lancamento>(`users/${this.authService.user.uid}/lancamentos`,
       ref => ref
         .where('data', '>=', firstDay)
         .where('data', '<=', lastDay)
@@ -38,10 +39,10 @@ export class LancamentoService {
   }
 
   excluir(lancamento: Lancamento) {
-    this.db.doc<Lancamento>('lancamentos/' + lancamento.id).delete();
+    this.db.doc<Lancamento>(`users/${this.authService.user.uid}/lancamentos/${lancamento.id}`).delete();
   }
 
   atualizar(lancamento: Lancamento) {
-    this.db.doc<Lancamento>('lancamentos/' + lancamento.id).update(lancamento);
+    this.db.doc<Lancamento>(`users/${this.authService.user.uid}/lancamentos/${lancamento.id}`).update(lancamento);
   }
 }
