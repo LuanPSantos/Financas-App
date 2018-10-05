@@ -1,5 +1,5 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
-import { LancamentoState, lancamentoReducer } from '../reducers/lancamento.reducer';
+import { LancamentoState } from '../reducers/lancamento.reducer';
 
 export const selectLancamentoState = createFeatureSelector<LancamentoState>('lancamento');
 
@@ -16,4 +16,14 @@ export const selectDataConsulta = createSelector(
 export const selectLancamentoEdicao = createSelector(
   selectLancamentoState,
   (lancamentoState) => lancamentoState.lancamentoASerEditado
+);
+
+export const estaCarregandoLancamentos = createSelector(
+  selectLancamentoState,
+  (lancamentoState) => lancamentoState.carregando
+);
+
+export const naoEstaCarregandoLancamentos = createSelector(
+  selectLancamentoState,
+  (lancamentoState) => !lancamentoState.carregando
 );

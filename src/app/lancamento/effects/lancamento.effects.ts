@@ -11,7 +11,6 @@ import {
 } from '../actions/lancamento.actions';
 import { map, mergeMap, tap } from 'rxjs/operators';
 import { LancamentoService } from '../lancamento.service';
-import { Router } from '@angular/router';
 import { AppState } from '../../reducers';
 import { Store, select } from '@ngrx/store';
 import { selectDataConsulta } from '../selectors/lancamento.selectors';
@@ -66,6 +65,5 @@ export class LancamentoEffects {
   constructor(
     private actions$: Actions,
     private lancamentoService: LancamentoService,
-    private router: Router,
     private store: Store<AppState>) { }
 }

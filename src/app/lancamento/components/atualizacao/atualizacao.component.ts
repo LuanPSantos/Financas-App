@@ -53,13 +53,6 @@ export class AtualizacaoComponent implements OnInit {
         this.form.patchValue({ ...lancamento, data: lancamento.data.toDate() });
       }
     });
-
-    this.store.pipe(
-      select(selectDataConsulta),
-      map((data) => {
-        this.form.get('data').setValue(data);
-      })
-    ).subscribe();
   }
 
   voltar() {

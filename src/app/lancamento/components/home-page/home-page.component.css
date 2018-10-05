@@ -6,7 +6,7 @@
 
 .bottom-limit {
   padding-top: 18px;
-  height: 42px;
+  height: 57px;
   width: 100%;
 }
 
@@ -28,4 +28,8 @@
 
 .cor-nao-pago{
   background-color:rgba(0, 0, 0, 0.38);
+}
+
+.spinener{
+  margin: 0 auto;
 }

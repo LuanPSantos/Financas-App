@@ -4,7 +4,7 @@ import { of } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AppState } from '../../../reducers';
 import { Store, select } from '@ngrx/store';
-import { SalvarLancamento, AtualizarLancamento } from '../../actions/lancamento.actions';
+import { SalvarLancamento, AtualizarLancamento, AtualizarData } from '../../actions/lancamento.actions';
 
 import { selectDataConsulta } from '../../selectors/lancamento.selectors';
 import { map } from 'rxjs/operators';
@@ -69,7 +69,6 @@ export class CadastroComponent implements OnInit {
     this.dispatchEvents();
     this.form.reset();
     this.formParcelas.reset();
-    this.router.navigateByUrl('app/home');
   }
 
   dispatchEvents() {
@@ -83,7 +82,6 @@ export class CadastroComponent implements OnInit {
         data.setDate(1);
         data.setMonth(data.getMonth() + 1);
       }
-
 
       const lancamento = {
         ...this.form.value,

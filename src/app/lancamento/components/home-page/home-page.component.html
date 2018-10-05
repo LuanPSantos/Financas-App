@@ -14,7 +14,13 @@
 
 <app-dashboard-page></app-dashboard-page>
 
-<mat-accordion>
+<mat-progress-spinner *ngIf="estaCarregando$ | async"
+        class="spinener"
+        color="primary"
+        mode="indeterminate"
+        value="20"></mat-progress-spinner>
+        
+<mat-accordion *ngIf="naoEstaCarregando$ | async">
   <mat-expansion-panel *ngFor="let lancamento of lancamentos$ | async">
     <mat-expansion-panel-header>
       <mat-panel-title>

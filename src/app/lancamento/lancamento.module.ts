@@ -26,6 +26,7 @@ import { CadastroComponent } from './components/cadastro/cadastro.component';
 import { AtualizacaoComponent } from './components/atualizacao/atualizacao.component';
 import { LancamentoRoutingModule } from './lancamento-routing.module';
 import { ChartsModule } from 'ng2-charts';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   imports: [
@@ -48,7 +49,8 @@ import { ChartsModule } from 'ng2-charts';
     AngularFirestoreModule,
     MatSlideToggleModule,
     LancamentoRoutingModule,
-    ChartsModule
+    ChartsModule,
+    MatProgressSpinnerModule
   ],
   declarations: [
     DashboardPageComponent,

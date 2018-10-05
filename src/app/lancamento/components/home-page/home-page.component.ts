@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Lancamento } from '../../model/lancamento.model';
 import { LancamentoState } from '../../reducers/lancamento.reducer';
 import { CarregarLancamentos, EditarLancamento, AtualizarData } from '../../actions/lancamento.actions';
-import { selectLancamentos, selectDataConsulta } from '../../selectors/lancamento.selectors';
+import { selectLancamentos, selectDataConsulta, estaCarregandoLancamentos, naoEstaCarregandoLancamentos } from '../../selectors/lancamento.selectors';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogoConfirmacaoExclusaoComponent } from '../dialogo-confirmacao-exclusao/dialogo-confirmacao-exclusao.component';
 import { Router } from '@angular/router';
@@ -19,6 +19,8 @@ import { AuthService } from '../../../login/auth.service';
 export class HomePageComponent implements OnInit {
 
   lancamentos$: Observable<Lancamento[]>;
+  estaCarregando$: Observable<boolean>;
+  naoEstaCarregando$: Observable<boolean>;
   data: Date;
 
   constructor(
@@ -36,10 +38,12 @@ export class HomePageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.lancamentos$ = this.store.pipe(
-      select(selectLancamentos)
-    );
+    this.carregarLancamentos();
+    this.buscarLancamentos();  
+    this.observarCarregamentoLancamentos();  
+  }
 
+  carregarLancamentos(){
     this.store.pipe(
       select(selectDataConsulta),
       map((data) => {
@@ -47,6 +51,22 @@ export class HomePageComponent implements OnInit {
         this.data = new Date(data.getTime());
       })
     ).subscribe();
+  }
+
+  buscarLancamentos(){
+    this.lancamentos$ = this.store.pipe(
+      select(selectLancamentos)
+    );
+  }
+
+  observarCarregamentoLancamentos(){
+    this.estaCarregando$ = this.store.pipe(
+      select(estaCarregandoLancamentos)
+    );
+
+    this.naoEstaCarregando$ = this.store.pipe(
+      select(naoEstaCarregandoLancamentos)
+    )
   }
 
   editar(lancamento: Lancamento) {
