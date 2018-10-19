@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { LancamentoState } from '../../reducers/lancamento.reducer';
 import { selectLancamentos } from '../../selectors/lancamento.selectors';
@@ -15,10 +15,11 @@ export class DashboardPageComponent implements OnInit {
   total$: Observable<number> = of(0);
   pago$: Observable<number> = of(0);
   restante$: Observable<number> = of(0);
-  // // Pie
-  // public pieChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales'];
-  // public pieChartData: number[] = [300, 500, 100];
-  // public pieChartType = 'pie';
+
+  @Output()
+  public onTrocarVisualizacao: EventEmitter<boolean> = new EventEmitter();
+
+  private verLista: boolean = true;
 
   constructor(private store: Store<LancamentoState>) { }
 
@@ -57,5 +58,10 @@ export class DashboardPageComponent implements OnInit {
         }
       })
     );
+  }
+
+  trocarVisualizacao(){
+    this.verLista = !this.verLista;
+    this.onTrocarVisualizacao.emit(this.verLista);
   }
 }

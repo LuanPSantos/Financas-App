@@ -27,6 +27,8 @@ import { AtualizacaoComponent } from './components/atualizacao/atualizacao.compo
 import { LancamentoRoutingModule } from './lancamento-routing.module';
 import { ChartsModule } from 'ng2-charts';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ChartsViewComponent } from './components/charts-view/charts-view.component';
+import { ListagemLancamentosComponent } from './components/listagem-lancamentos/listagem-lancamentos.component';
 
 @NgModule({
   imports: [
@@ -57,7 +59,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     HomePageComponent,
     DialogoConfirmacaoExclusaoComponent,
     CadastroComponent,
-    AtualizacaoComponent
+    AtualizacaoComponent,
+    ChartsViewComponent,
+    ListagemLancamentosComponent
   ],
   entryComponents: [
     DialogoConfirmacaoExclusaoComponent

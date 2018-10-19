@@ -1,0 +1,40 @@
+<mat-accordion *ngIf="naoEstaCarregando">
+  <mat-expansion-panel *ngFor="let lancamento of lancamentos">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <span [ngClass]="{'bolinha': true, 'cor-pago': lancamento?.pago, 'cor-nao-pago': !lancamento?.pago}"></span>
+        <span>{{ lancamento?.titulo }}</span>
+      </mat-panel-title>
+
+      <mat-panel-description>
+        <div class="item-valor">
+          {{ lancamento?.valor | currency: 'BRL' }}
+        </div>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-list>
+      <mat-list-item>
+        {{ lancamento?.categoria }}
+      </mat-list-item>
+      <mat-list-item>
+        {{ lancamento?.data.toDate() | date:'dd/MM/yyyy' }}
+      </mat-list-item>
+      <mat-list-item>
+        {{ lancamento?.parcela }} / {{ lancamento?.parcelas }}
+      </mat-list-item>
+
+      <mat-list-item>
+        <div class="spacer"></div>
+        <button mat-icon-button (click)="openDialog(lancamento)">
+          <mat-icon aria-label="Excluir">delete</mat-icon>
+        </button>
+        <button mat-icon-button (click)="editar(lancamento)">
+          <mat-icon aria-label="Editar">edit</mat-icon>
+        </button>
+      </mat-list-item>
+
+
+    </mat-list>
+  </mat-expansion-panel>
+</mat-accordion>

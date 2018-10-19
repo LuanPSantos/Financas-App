@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card class="dash-margin">
   <mat-card-content>
     <p class="total indicador">Total: {{ total$ | async | currency: 'BRL' }}</p>
 
@@ -6,12 +6,7 @@
 
     <p class="restante indicador">Restante: {{ restante$ | async | currency: 'BRL' }}</p>
   </mat-card-content>
+  <mat-card-footer>
+    <button mat-button class="trocarVisualizacao" (click)="trocarVisualizacao()">Trocar visualização</button>
+  </mat-card-footer>
 </mat-card>
-<!-- <mat-card>
-  <mat-card-content>
-      <canvas baseChart 
-            [data]="pieChartData"
-            [labels]="pieChartLabels"
-            [chartType]="pieChartType"></canvas>
-  </mat-card-content>
-</mat-card> -->

@@ -22,6 +22,7 @@ export class HomePageComponent implements OnInit {
   estaCarregando$: Observable<boolean>;
   naoEstaCarregando$: Observable<boolean>;
   data: Date;
+  verLista: boolean = true;
 
   constructor(
     private router: Router,
@@ -94,5 +95,9 @@ export class HomePageComponent implements OnInit {
 
   onLogout() {
     this.auth.signOut();
+  }
+
+  trocarVisualizacao(verLista){
+    this.verLista = verLista;
   }
 }
