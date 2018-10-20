@@ -20,14 +20,16 @@
         mode="indeterminate"
         value="20"></mat-progress-spinner>
         
-<app-listagem-lancamentos *ngIf="verLista"
-  [naoEstaCarregando]="naoEstaCarregando$ | async"
+<app-listagem-lancamentos *ngIf="verLista && (naoEstaCarregando$ | async)"
   [lancamentos]="lancamentos$ | async"
   (onOpenDialog)="openDialog($event)"
   (onEditar)="editar($event)">
 </app-listagem-lancamentos>
 
-<app-charts-view *ngIf="!verLista"></app-charts-view>
+<app-charts-view *ngIf="!verLista && (naoEstaCarregando$ | async)"
+  [lancamentos]="lancamentos$ | async"
+  [categorias]="categorias$ | async"
+></app-charts-view>
 
 <div class="bottom-limit">
     <button mat-raised-button color="primary" (click)="onLogout()">Sair</button>

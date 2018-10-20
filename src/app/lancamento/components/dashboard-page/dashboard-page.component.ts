@@ -12,14 +12,19 @@ import { Observable, of } from 'rxjs';
 })
 export class DashboardPageComponent implements OnInit {
 
+  LISTA = 'Visualizar a lista';
+  GRAFICO = 'Visualizar em gráficos';
+
   total$: Observable<number> = of(0);
   pago$: Observable<number> = of(0);
   restante$: Observable<number> = of(0);
 
+  // tslint:disable-next-line:no-output-on-prefix
   @Output()
   public onTrocarVisualizacao: EventEmitter<boolean> = new EventEmitter();
 
-  private verLista: boolean = true;
+  verLista = true;
+  verListaLabel = this.GRAFICO;
 
   constructor(private store: Store<LancamentoState>) { }
 
@@ -60,8 +65,9 @@ export class DashboardPageComponent implements OnInit {
     );
   }
 
-  trocarVisualizacao(){
+  trocarVisualizacao() {
     this.verLista = !this.verLista;
+    this.verListaLabel = this.verLista ? this.GRAFICO : this.LISTA;
     this.onTrocarVisualizacao.emit(this.verLista);
   }
 }

@@ -11,25 +11,24 @@ export class ListagemLancamentosComponent implements OnInit {
   constructor() { }
 
   @Input()
-  public naoEstaCarregando: boolean = false;
-
-  @Input()
   public lancamentos: Lancamento[] = [];
 
+  // tslint:disable-next-line:no-output-on-prefix
   @Output()
   public onOpenDialog: EventEmitter<Lancamento> = new EventEmitter();
 
+  // tslint:disable-next-line:no-output-on-prefix
   @Output()
   public onEditar: EventEmitter<Lancamento> = new EventEmitter();
 
   ngOnInit() {
   }
 
-  openDialog(lancamento){
+  openDialog(lancamento) {
     this.onOpenDialog.emit(lancamento);
   }
 
-  editar(lancamento){
+  editar(lancamento) {
     this.onEditar.emit(lancamento);
   }
 

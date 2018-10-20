@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Lancamento } from '../../model/lancamento.model';
 import { LancamentoState } from '../../reducers/lancamento.reducer';
 import { CarregarLancamentos, EditarLancamento, AtualizarData } from '../../actions/lancamento.actions';
-import { selectLancamentos, selectDataConsulta, estaCarregandoLancamentos, naoEstaCarregandoLancamentos } from '../../selectors/lancamento.selectors';
+import {
+  selectLancamentos,
+  selectDataConsulta,
+  estaCarregandoLancamentos,
+  naoEstaCarregandoLancamentos
+} from '../../selectors/lancamento.selectors';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogoConfirmacaoExclusaoComponent } from '../dialogo-confirmacao-exclusao/dialogo-confirmacao-exclusao.component';
 import { Router } from '@angular/router';
@@ -22,7 +27,19 @@ export class HomePageComponent implements OnInit {
   estaCarregando$: Observable<boolean>;
   naoEstaCarregando$: Observable<boolean>;
   data: Date;
-  verLista: boolean = true;
+  verLista = true;
+
+  categorias$ = of([
+    { label: 'Carro', value: 'Carro' },
+    { label: 'Comida', value: 'Comida' },
+    { label: 'Educação', value: 'Educação' },
+    { label: 'Lazer', value: 'Lazer' },
+    { label: 'Casa', value: 'Casa' },
+    { label: 'Cartão de crédio', value: 'Cartão de crédito' },
+    { label: 'Imprevistos', value: 'Imprevistos' },
+    { label: 'Saúde', value: 'Saúde' },
+    { label: 'Outros', value: 'Outros' }
+  ]);
 
   constructor(
     private router: Router,
@@ -40,11 +57,11 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
     this.carregarLancamentos();
-    this.buscarLancamentos();  
-    this.observarCarregamentoLancamentos();  
+    this.buscarLancamentos();
+    this.observarCarregamentoLancamentos();
   }
 
-  carregarLancamentos(){
+  carregarLancamentos() {
     this.store.pipe(
       select(selectDataConsulta),
       map((data) => {
@@ -54,20 +71,20 @@ export class HomePageComponent implements OnInit {
     ).subscribe();
   }
 
-  buscarLancamentos(){
+  buscarLancamentos() {
     this.lancamentos$ = this.store.pipe(
       select(selectLancamentos)
     );
   }
 
-  observarCarregamentoLancamentos(){
+  observarCarregamentoLancamentos() {
     this.estaCarregando$ = this.store.pipe(
       select(estaCarregandoLancamentos)
     );
 
     this.naoEstaCarregando$ = this.store.pipe(
       select(naoEstaCarregandoLancamentos)
-    )
+    );
   }
 
   editar(lancamento: Lancamento) {
@@ -97,7 +114,7 @@ export class HomePageComponent implements OnInit {
     this.auth.signOut();
   }
 
-  trocarVisualizacao(verLista){
+  trocarVisualizacao(verLista) {
     this.verLista = verLista;
   }
 }
