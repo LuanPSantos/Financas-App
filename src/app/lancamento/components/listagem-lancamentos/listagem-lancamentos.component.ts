@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Lancamento } from '../../model/lancamento.model';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-listagem-lancamentos',
@@ -12,14 +13,14 @@ export class ListagemLancamentosComponent implements OnInit {
 
   @Input()
   public lancamentos: Lancamento[] = [];
-
-  // tslint:disable-next-line:no-output-on-prefix
   @Output()
   public onOpenDialog: EventEmitter<Lancamento> = new EventEmitter();
-
-  // tslint:disable-next-line:no-output-on-prefix
   @Output()
   public onEditar: EventEmitter<Lancamento> = new EventEmitter();
+  @Output()
+  public onTogglePago: EventEmitter<Lancamento> = new EventEmitter();
+
+  pago = new FormControl(true);
 
   ngOnInit() {
   }
@@ -30,6 +31,14 @@ export class ListagemLancamentosComponent implements OnInit {
 
   editar(lancamento) {
     this.onEditar.emit(lancamento);
+  }
+
+  togglePago(event, lancamento) {
+    lancamento = {
+      ...lancamento,
+      pago: event.checked
+    };
+    this.onTogglePago.emit(lancamento);
   }
 
 }

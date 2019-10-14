@@ -13,6 +13,10 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
 
+    <mat-slide-toggle [checked]="lancamento?.pago" (change)="togglePago($event, lancamento)">
+      Pago
+    </mat-slide-toggle>
+
     <mat-list>
       <mat-list-item>
         {{ lancamento?.categoria }}
@@ -33,8 +37,6 @@
           <mat-icon aria-label="Editar">edit</mat-icon>
         </button>
       </mat-list-item>
-
-
     </mat-list>
   </mat-expansion-panel>
 </mat-accordion>

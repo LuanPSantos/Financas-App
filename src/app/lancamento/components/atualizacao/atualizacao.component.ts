@@ -20,11 +20,17 @@ export class AtualizacaoComponent implements OnInit {
     { label: 'Carro', value: 'Carro' },
     { label: 'Comida', value: 'Comida' },
     { label: 'Educação', value: 'Educação' },
+    { label: 'Música', value: 'Música' },
     { label: 'Lazer', value: 'Lazer' },
     { label: 'Casa', value: 'Casa' },
     { label: 'Cartão de crédio', value: 'Cartão de crédito' },
     { label: 'Imprevistos', value: 'Imprevistos' },
     { label: 'Saúde', value: 'Saúde' },
+    { label: 'Roupas', value: 'Roupas' },
+    { label: 'Uber/99', value: 'Uber/99' },
+    { label: 'Mercado', value: 'Mercado' },
+    { label: 'Lavandeira', value: 'Lavandeira' },
+    { label: 'Streaming', value: 'Streaming' },
     { label: 'Outros', value: 'Outros' }
   ]);
 

@@ -3,7 +3,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { Lancamento } from '../../model/lancamento.model';
 import { LancamentoState } from '../../reducers/lancamento.reducer';
-import { CarregarLancamentos, EditarLancamento, AtualizarData } from '../../actions/lancamento.actions';
+import { CarregarLancamentos, EditarLancamento, AtualizarData, AtualizarLancamento } from '../../actions/lancamento.actions';
 import {
   selectLancamentos,
   selectDataConsulta,
@@ -33,11 +33,17 @@ export class HomePageComponent implements OnInit {
     { label: 'Carro', value: 'Carro' },
     { label: 'Comida', value: 'Comida' },
     { label: 'Educação', value: 'Educação' },
+    { label: 'Música', value: 'Música' },
     { label: 'Lazer', value: 'Lazer' },
     { label: 'Casa', value: 'Casa' },
     { label: 'Cartão de crédio', value: 'Cartão de crédito' },
     { label: 'Imprevistos', value: 'Imprevistos' },
     { label: 'Saúde', value: 'Saúde' },
+    { label: 'Roupas', value: 'Roupas' },
+    { label: 'Uber/99', value: 'Uber/99' },
+    { label: 'Mercado', value: 'Mercado' },
+    { label: 'Lavandeira', value: 'Lavandeira' },
+    { label: 'Streaming', value: 'Streaming' },
     { label: 'Outros', value: 'Outros' }
   ]);
 
@@ -116,5 +122,9 @@ export class HomePageComponent implements OnInit {
 
   trocarVisualizacao(verLista) {
     this.verLista = verLista;
+  }
+
+  salvar(lancamento) {
+    this.store.dispatch(new AtualizarLancamento({ lancamento }));
   }
 }

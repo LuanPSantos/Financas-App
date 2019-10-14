@@ -23,7 +23,8 @@
 <app-listagem-lancamentos *ngIf="verLista && (naoEstaCarregando$ | async)"
   [lancamentos]="lancamentos$ | async"
   (onOpenDialog)="openDialog($event)"
-  (onEditar)="editar($event)">
+  (onEditar)="editar($event)"
+  (onTogglePago)="salvar($event)">
 </app-listagem-lancamentos>
 
 <app-charts-view *ngIf="!verLista && (naoEstaCarregando$ | async)"
